@@ -1,0 +1,197 @@
+/*
+ * Copyright © 2013 Canonical Ltd.
+ *
+ * This program is free software: you can redistribute it and/or modify it
+ * under the terms of the GNU Lesser General Public License version 3,
+ * as published by the Free Software Foundation.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU Lesser General Public License for more details.
+ *
+ * You should have received a copy of the GNU Lesser General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ *
+ * Authored by: Thomas Voß <thomas.voss@canonical.com>
+ */
+
+#include <core/dbus/dbus.h>
+#include <core/dbus/message.h>
+
+#include <gtest/gtest.h>
+
+#include <chrono>
+#include <memory>
+
+namespace dbus = core::dbus;
+
+TEST(Message, BuildingAMethodCallMessageSucceedsForValidArguments)
+{
+    const std::string destination = core::dbus::DBus::name();
+    const std::string path = core::dbus::DBus::path().as_string();
+    const std::string interface = core::dbus::DBus::name();
+    const std::string member = "ListNames";
+
+    std::shared_ptr<core::dbus::Message> msg;
+    EXPECT_NO_THROW(msg = core::dbus::Message::make_method_call(destination, path, interface, member););
+    EXPECT_NE(nullptr, msg.get());
+}
+
+TEST(Message, BuildingAMethodCallMessageThrowsForInvalidArguments)
+{
+    const std::string destination = core::dbus::DBus::name();
+    const std::string path = "an:invalid:path";
+    const std::string interface = core::dbus::DBus::name();
+    const std::string member = "ListNames";
+
+    std::shared_ptr<core::dbus::Message> msg;
+    EXPECT_ANY_THROW(msg = core::dbus::Message::make_method_call(destination, path, interface, member););
+    EXPECT_EQ(nullptr, msg.get());
+}
+
+TEST(Message, AccessingAReaderOnAnEmptyMessageThrows)
+{
+    const std::string destination = core::dbus::DBus::name();
+    const std::string path = core::dbus::DBus::path().as_string();
+    const std::string interface = core::dbus::DBus::name();
+    const std::string member = "ListNames";
+
+    auto msg = core::dbus::Message::make_method_call(destination, path, interface, member);
+
+    EXPECT_ANY_THROW(msg->reader());
+}
+
+TEST(Message, AccessingAWriterOnAnyMessageSucceeds)
+{
+    const std::string destination = core::dbus::DBus::name();
+    const std::string path = core::dbus::DBus::path().as_string();
+    const std::string interface = core::dbus::DBus::name();
+    const std::string member = "ListNames";
+
+    auto msg = core::dbus::Message::make_method_call(
+                destination,
+                path,
+                interface,
+                member);
+
+    EXPECT_NO_THROW(auto writer = msg->writer());
+
+    {
+        msg->writer().push_int16(43);
+        msg->writer().push_int16(42);
+    }
+
+    EXPECT_NO_THROW(auto writer = msg->writer(););
+}
+
+TEST(Message, WriteAndSuccessiveReadAreIdempotent)
+{
+    const std::string destination = core::dbus::DBus::name();
+    const std::string path = core::dbus::DBus::path().as_string();
+    const std::string interface = core::dbus::DBus::name();
+    const std::string member = "ListNames";
+
+    auto msg = core::dbus::Message::make_method_call(
+                destination,
+                path,
+                interface,
+                member);
+
+    const int32_t expected_integer_value
+    {
+        43
+    };
+    const double expected_floating_point_value
+    {
+        42.
+    };
+
+    {
+        auto writer = msg->writer();
+        writer.push_int32(expected_integer_value);
+        writer.push_floating_point(expected_floating_point_value);
+    }
+
+    auto reader = msg->reader();
+    auto i = reader.pop_int32();
+    auto d = reader.pop_floating_point();
+
+    EXPECT_EQ(expected_integer_value, i);
+    EXPECT_EQ(expected_floating_point_value, d);
+}
+
+TEST(Message, WriteAndSuccessiveIterationAreIdempotent)
+{
+    const std::string destination = core::dbus::DBus::name();
+    const std::string path = core::dbus::DBus::path().as_string();
+    const std::string interface = core::dbus::DBus::name();
+    const std::string member = "ListNames";
+
+    auto msg = core::dbus::Message::make_method_call(
+                destination,
+                path,
+                interface,
+                member);
+
+    const std::int32_t expected_integer_value
+    {
+        43
+    };
+    const double expected_floating_point_value
+    {
+        42.
+    };
+
+    {
+        auto writer = msg->writer();
+        writer.push_int32(expected_integer_value);
+        writer.push_floating_point(expected_floating_point_value);
+        auto vw = writer.open_variant(dbus::types::Signature("(id)"));
+        {
+            auto sw = vw.open_structure();
+            {
+                sw.push_int32(expected_integer_value);
+                sw.push_floating_point(expected_floating_point_value);
+            }
+            vw.close_structure(std::move(sw));
+        }
+        writer.close_variant(std::move(vw));
+    }
+
+    auto reader = msg->reader();
+    EXPECT_EQ(dbus::ArgumentType::int32, reader.type());
+    EXPECT_NO_THROW(reader.pop());
+    EXPECT_EQ(dbus::ArgumentType::floating_point, reader.type());
+    EXPECT_NO_THROW(reader.pop());
+    auto vr = reader.pop_variant();
+    {
+        auto sr = vr.pop_structure();
+        {
+            EXPECT_EQ(dbus::ArgumentType::int32, sr.type());
+            EXPECT_EQ(expected_integer_value, sr.pop_int32());
+            EXPECT_EQ(dbus::ArgumentType::floating_point, sr.type());
+            EXPECT_EQ(expected_floating_point_value, sr.pop_floating_point());
+        }
+    }
+}
+
+namespace
+{
+class MessageType : public testing::TestWithParam<std::pair<core::dbus::Message::Type, std::string>>
+{
+};
+}
+
+TEST_P(MessageType, IsPrintedCorrectly)
+{
+    std::stringstream ss; ss << GetParam().first;
+    EXPECT_EQ(GetParam().second, ss.str());
+}
+
+INSTANTIATE_TEST_CASE_P(MessageType, MessageType, ::testing::Values(
+                            std::make_pair(core::dbus::Message::Type::error, "error"),
+                            std::make_pair(core::dbus::Message::Type::invalid, "invalid"),
+                            std::make_pair(core::dbus::Message::Type::method_call, "method_call"),
+                            std::make_pair(core::dbus::Message::Type::method_return, "method_return"),
+                            std::make_pair(core::dbus::Message::Type::signal, "signal")));

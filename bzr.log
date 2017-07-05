@@ -1,0 +1,938 @@
+------------------------------------------------------------
+revno: 103
+tags: 5.0.0+16.10.20160809-0ubuntu1
+committer: Bileto Bot <ci-train-bot@canonical.com>
+branch nick: dbus-cpp
+timestamp: Tue 2016-08-09 07:31:30 +0000
+message:
+  Releasing 5.0.0+16.10.20160809-0ubuntu1
+------------------------------------------------------------
+revno: 102 [merge]
+fixes bugs: https://launchpad.net/bugs/1422304 https://launchpad.net/bugs/1480877 https://launchpad.net/bugs/1509285 https://launchpad.net/bugs/1524131 https://launchpad.net/bugs/1526877
+committer: Bileto Bot <ci-train-bot@canonical.com>
+branch nick: dbus-cpp
+timestamp: Tue 2016-08-09 07:31:05 +0000
+message:
+  * debian/libdbus-cpp4.symbols.32bit: update to released version.
+  * debian/libdbus-cpp4.symbols.64bit: update to released version.
+  * Add a proper operator<< for dbus::Message::Type. (LP: #1524131)
+  * Only run dbus_shutdown if explicitly requested by env var. (LP:
+    #1422304, #1526877)
+  * New rebuild forced.
+  * Ensure that Signal with non-void argument types correctly narrow
+    their match rules. (LP: #1480877)
+  * New rebuild forced.
+  * Do not cache emitted values for stub signals. (LP: #1509285)
+  * Ensure that the signals are correctly emitted for when the services
+    appear and go.
+------------------------------------------------------------
+revno: 101
+tags: 5.0.0+15.10.20151022.1-0ubuntu1
+committer: CI Train Bot <ci-train-bot@canonical.com>
+branch nick: dbus-cpp
+timestamp: Thu 2015-10-22 07:17:01 +0000
+message:
+  Releasing 5.0.0+15.10.20151022.1-0ubuntu1
+------------------------------------------------------------
+revno: 100 [merge]
+author: Thomas Voß <thomas.voss@canonical.com>
+committer: CI Train Bot <ci-train-bot@canonical.com>
+branch nick: dbus-cpp
+timestamp: Thu 2015-10-22 07:16:58 +0000
+message:
+  Fix signal emission on dbus::ServiceWatcher.
+  
+  Ensure that the signals are correctly emitted when the service
+  appears or disappears.
+------------------------------------------------------------
+revno: 99
+tags: 5.0.0+15.10.20151021.1-0ubuntu1
+committer: CI Train Bot <ci-train-bot@canonical.com>
+branch nick: dbus-cpp
+timestamp: Wed 2015-10-21 08:00:51 +0000
+message:
+  Releasing 5.0.0+15.10.20151021.1-0ubuntu1
+------------------------------------------------------------
+revno: 98 [merge]
+author: Thomas Voß <thomas.voss@canonical.com>
+committer: CI Train Bot <ci-train-bot@canonical.com>
+branch nick: dbus-cpp
+timestamp: Wed 2015-10-21 08:00:49 +0000
+message:
+  Bump major revision to account for toolchain update. Fixes LP:#1452322 Fixes: #1452322
+------------------------------------------------------------
+revno: 97
+tags: 4.3.0+15.04.20150505-0ubuntu1
+committer: CI Train Bot <ci-train-bot@canonical.com>
+branch nick: dbus-cpp
+timestamp: Tue 2015-05-05 08:24:50 +0000
+message:
+  Releasing 4.3.0+15.04.20150505-0ubuntu1
+------------------------------------------------------------
+revno: 96 [merge]
+author: Thomas Voß <thomas.voss@canonical.com>
+committer: CI Train Bot <ci-train-bot@canonical.com>
+branch nick: dbus-cpp
+timestamp: Tue 2015-05-05 08:24:45 +0000
+message:
+  core::dbus::Fixture: Provide access to the address of the spawned session/system bus instances.
+  Approved by: Manuel de la Peña
+------------------------------------------------------------
+revno: 95
+tags: 4.3.0+15.04.20150415-0ubuntu1
+committer: CI Train Bot <ci-train-bot@canonical.com>
+branch nick: dbus-cpp
+timestamp: Wed 2015-04-15 09:51:18 +0000
+message:
+  Releasing 4.3.0+15.04.20150415-0ubuntu1
+------------------------------------------------------------
+revno: 94 [merge]
+author: Thomas Voß <thomas.voss@canonical.com>
+committer: CI Train Bot <ci-train-bot@canonical.com>
+branch nick: dbus-cpp
+timestamp: Wed 2015-04-15 09:51:15 +0000
+message:
+  DBus daemon lives in /usr/bin now.
+  Approved by: PS Jenkins bot, Manuel de la Peña
+------------------------------------------------------------
+revno: 93
+tags: 4.3.0+15.04.20150123-0ubuntu1
+committer: CI Train Bot <ci-train-bot@canonical.com>
+branch nick: dbus-cpp
+timestamp: Fri 2015-01-23 09:56:07 +0000
+message:
+  Releasing 4.3.0+15.04.20150123-0ubuntu1
+------------------------------------------------------------
+revno: 92 [merge]
+author: thomas-voss <thomas.voss@canonical.com>
+committer: CI Train Bot <ci-train-bot@canonical.com>
+branch nick: dbus-cpp
+timestamp: Fri 2015-01-23 09:55:55 +0000
+message:
+  We ref on construction, so decrement the ref count by 1 to 1 prior to returning. Fixes: #1396985
+  Approved by: Antti Kaijanmäki, PS Jenkins bot
+------------------------------------------------------------
+revno: 91
+tags: 4.3.0+15.04.20141110-0ubuntu1
+committer: CI bot <ps-jenkins@lists.canonical.com>
+branch nick: dbus-cpp
+timestamp: Mon 2014-11-10 12:31:09 +0000
+message:
+  Releasing 4.3.0+15.04.20141110-0ubuntu1
+------------------------------------------------------------
+revno: 90 [merge]
+author: thomas-voss <thomas.voss@canonical.com>
+committer: CI bot <ps-jenkins@lists.canonical.com>
+branch nick: dbus-cpp
+timestamp: Mon 2014-11-10 12:30:54 +0000
+message:
+  Ensure Signal<void>::~Signal is exception safe. Fixes: 1390618
+  Approved by: PS Jenkins bot
+------------------------------------------------------------
+revno: 89
+tags: 4.2.0+15.04.20141105-0ubuntu1
+committer: CI bot <ps-jenkins@lists.canonical.com>
+branch nick: dbus-cpp
+timestamp: Wed 2014-11-05 07:51:07 +0000
+message:
+  Releasing 4.2.0+15.04.20141105-0ubuntu1
+------------------------------------------------------------
+revno: 88 [merge]
+author: thomas-voss <thomas.voss@canonical.com>
+committer: CI bot <ps-jenkins@lists.canonical.com>
+branch nick: dbus-cpp
+timestamp: Wed 2014-11-05 07:50:53 +0000
+message:
+  Make core::dbus::Signal::~Signal exception safe. Fixes: 1387959
+  Approved by: PS Jenkins bot
+------------------------------------------------------------
+revno: 87
+tags: 4.1.0+15.04.20141104-0ubuntu1
+committer: CI bot <ps-jenkins@lists.canonical.com>
+branch nick: dbus-cpp
+timestamp: Tue 2014-11-04 04:23:35 +0000
+message:
+  Releasing 4.1.0+15.04.20141104-0ubuntu1
+------------------------------------------------------------
+revno: 86
+committer: CI bot <ps-jenkins@lists.canonical.com>
+branch nick: dbus-cpp
+timestamp: Tue 2014-11-04 04:23:21 +0000
+message:
+  Sync from RTM 
+------------------------------------------------------------
+revno: 85
+tags: 4.1.0+14.10.20141031~rtm-0ubuntu1
+committer: CI bot <ps-jenkins@lists.canonical.com>
+branch nick: dbus-cpp
+timestamp: Fri 2014-10-31 07:51:25 +0000
+message:
+  Releasing 4.1.0+14.10.20141031~rtm-0ubuntu1
+------------------------------------------------------------
+revno: 84 [merge]
+author: thomas-voss <thomas.voss@canonical.com>, Kevin Gunn <kevin.gunn@canonical.com>
+committer: CI bot <ps-jenkins@lists.canonical.com>
+branch nick: dbus-cpp
+timestamp: Fri 2014-10-31 07:51:12 +0000
+message:
+  Relax timeout on org.freedesktop.Properties::{GetAll, Get, Set}. with timeout set to 30 sec Fixes: 1361642, 1381041
+  Approved by: Antti Kaijanmäki, PS Jenkins bot
+------------------------------------------------------------
+revno: 83
+tags: 4.1.0+14.10.20141030~rtm-0ubuntu1
+committer: CI bot <ps-jenkins@lists.canonical.com>
+branch nick: dbus-cpp
+timestamp: Thu 2014-10-30 14:01:10 +0000
+message:
+  Releasing 4.1.0+14.10.20141030~rtm-0ubuntu1
+------------------------------------------------------------
+revno: 82 [merge]
+author: thomas-voss <thomas.voss@canonical.com>
+committer: CI bot <ps-jenkins@lists.canonical.com>
+branch nick: dbus-cpp
+timestamp: Thu 2014-10-30 14:00:53 +0000
+message:
+  Robustify against potential dead objects hanging around. Fixes: 1381041, 1382595, 1386803
+  Approved by: Alberto Aguirre, PS Jenkins bot, Marcus Tomlinson
+------------------------------------------------------------
+revno: 81
+tags: 4.0.0+14.10.20141006-0ubuntu1
+committer: CI bot <ps-jenkins@lists.canonical.com>
+branch nick: dbus-cpp
+timestamp: Mon 2014-10-06 15:55:54 +0000
+message:
+  Releasing 4.0.0+14.10.20141006-0ubuntu1
+------------------------------------------------------------
+revno: 80 [merge]
+author: thomas-voss <thomas.voss@canonical.com>
+committer: CI bot <ps-jenkins@lists.canonical.com>
+branch nick: dbus-cpp
+timestamp: Mon 2014-10-06 15:55:41 +0000
+message:
+  Fix another race when setting up a pending call notification on another thread than the one driving the event loop.
+  Introduce an option to enable sanitizers. 
+  Approved by: Marcus Tomlinson, PS Jenkins bot, Alberto Aguirre
+------------------------------------------------------------
+revno: 79
+tags: 4.0.0+14.10.20141002.1-0ubuntu1
+committer: CI bot <ps-jenkins@lists.canonical.com>
+branch nick: dbus-cpp
+timestamp: Thu 2014-10-02 20:49:03 +0000
+message:
+  Releasing 4.0.0+14.10.20141002.1-0ubuntu1
+------------------------------------------------------------
+revno: 78 [merge]
+author: thomas-voss <thomas.voss@canonical.com>
+committer: CI bot <ps-jenkins@lists.canonical.com>
+branch nick: dbus-cpp
+timestamp: Thu 2014-10-02 20:48:52 +0000
+message:
+  Always unref pending calls, add load test to ensure correct behavior.
+  Make sure that timeouts are never notified after destruction. Fixes: 1367836
+  Approved by: Alberto Aguirre, PS Jenkins bot
+------------------------------------------------------------
+revno: 77
+tags: 4.0.0+14.10.20140917-0ubuntu1
+committer: CI bot <ps-jenkins@lists.canonical.com>
+branch nick: dbus-cpp
+timestamp: Wed 2014-09-17 11:47:45 +0000
+message:
+  Releasing 4.0.0+14.10.20140917-0ubuntu1
+------------------------------------------------------------
+revno: 76 [merge]
+author: thomas-voss <thomas.voss@canonical.com>
+committer: CI bot <ps-jenkins@lists.canonical.com>
+branch nick: dbus-cpp
+timestamp: Wed 2014-09-17 11:47:34 +0000
+message:
+  Factor out dbus-specific environment variable names into compile-time constants.
+  Make sure that environment variables are unset prior to setting. 
+  Approved by: Loïc Minier, PS Jenkins bot
+------------------------------------------------------------
+revno: 75
+tags: 4.0.0+14.10.20140909-0ubuntu1
+committer: CI bot <ps-jenkins@lists.canonical.com>
+branch nick: dbus-cpp
+timestamp: Tue 2014-09-09 18:31:44 +0000
+message:
+  Releasing 4.0.0+14.10.20140909-0ubuntu1
+------------------------------------------------------------
+revno: 74 [merge]
+author: thomas-voss <thomas.voss@canonical.com>
+committer: CI bot <ps-jenkins@lists.canonical.com>
+branch nick: dbus-cpp
+timestamp: Tue 2014-09-09 18:31:32 +0000
+message:
+  Make sure that signature for int64 types is calculated correctly. 
+  Approved by: Marcus Tomlinson, PS Jenkins bot
+------------------------------------------------------------
+revno: 73
+tags: 4.0.0+14.10.20140808-0ubuntu1
+committer: CI bot <ps-jenkins@lists.canonical.com>
+branch nick: dbus-cpp
+timestamp: Fri 2014-08-08 02:05:51 +0000
+message:
+  Releasing 4.0.0+14.10.20140808-0ubuntu1
+------------------------------------------------------------
+revno: 72 [merge]
+author: thomas-voss <thomas.voss@canonical.com>
+committer: CI bot <ps-jenkins@lists.canonical.com>
+branch nick: dbus-cpp
+timestamp: Fri 2014-08-08 02:05:40 +0000
+message:
+  Ensure that property changed signals are only subscribed to once. 
+  Approved by: PS Jenkins bot
+------------------------------------------------------------
+revno: 71
+tags: 4.0.0+14.10.20140730-0ubuntu1
+committer: CI bot <ps-jenkins@lists.canonical.com>
+branch nick: dbus-cpp
+timestamp: Wed 2014-07-30 16:12:30 +0000
+message:
+  Releasing 4.0.0+14.10.20140730-0ubuntu1
+------------------------------------------------------------
+revno: 70
+committer: CI bot <ps-jenkins@lists.canonical.com>
+branch nick: dbus-cpp
+timestamp: Wed 2014-07-30 16:12:27 +0000
+message:
+  Replaced 0replaceme with real versions.
+------------------------------------------------------------
+revno: 69 [merge]
+author: thomas-voss <thomas.voss@canonical.com>
+committer: CI bot <ps-jenkins@lists.canonical.com>
+branch nick: dbus-cpp
+timestamp: Wed 2014-07-30 16:12:16 +0000
+message:
+  Make sure that core::dbus::Service::Service(...) interprets return values of dbus_bus_request_name correctly. Fixes: 1329211
+  Approved by: Pete Woods, PS Jenkins bot
+------------------------------------------------------------
+revno: 68 [merge]
+author: thomas-voss <thomas.voss@canonical.com>
+committer: CI bot <ps-jenkins@lists.canonical.com>
+branch nick: dbus-cpp
+timestamp: Wed 2014-07-30 16:12:05 +0000
+message:
+  Make sure that dbus daemon instances fired up for testing are torn down after a configurable timeout. Fixes: 1326200
+  Approved by: Pete Woods, PS Jenkins bot, Manuel de la Peña
+------------------------------------------------------------
+revno: 67
+tags: 4.0.0+14.10.20140718-0ubuntu2
+author: Steve Langasek <steve.langasek@ubuntu.com>
+committer: Colin Watson <cjwatson@canonical.com>
+branch nick: dbus-cpp
+timestamp: Thu 2014-07-24 12:12:39 -0700
+message:
+  No-change rebuild to get dbgsyms for all binaries onto
+  ddebs.ubuntu.com
+------------------------------------------------------------
+revno: 66
+tags: 4.0.0+14.10.20140718-0ubuntu1
+committer: CI bot <ps-jenkins@lists.canonical.com>
+branch nick: dbus-cpp
+timestamp: Fri 2014-07-18 12:24:19 +0000
+message:
+  Releasing 4.0.0+14.10.20140718-0ubuntu1
+------------------------------------------------------------
+revno: 65 [merge]
+author: thomas-voss <thomas.voss@canonical.com>
+committer: CI bot <ps-jenkins@lists.canonical.com>
+branch nick: dbus-cpp
+timestamp: Fri 2014-07-18 12:24:09 +0000
+message:
+  Bump major revision and so name to account for toolchain update. 
+  Approved by: PS Jenkins bot, Colin Watson
+------------------------------------------------------------
+revno: 64
+tags: 3.1.0+14.10.20140716.1-0ubuntu1
+committer: CI bot <ps-jenkins@lists.canonical.com>
+branch nick: dbus-cpp
+timestamp: Wed 2014-07-16 20:19:01 +0000
+message:
+  Releasing 3.1.0+14.10.20140716.1-0ubuntu1
+------------------------------------------------------------
+revno: 63 [merge]
+author: thomas-voss <thomas.voss@canonical.com>
+committer: CI bot <ps-jenkins@lists.canonical.com>
+branch nick: dbus-cpp
+timestamp: Wed 2014-07-16 20:18:51 +0000
+message:
+  Cherry pick custom name change and start over with the MP. 
+  Approved by: Pete Woods, PS Jenkins bot
+------------------------------------------------------------
+revno: 62 [merge]
+tags: 3.1.0+14.10.20140711-0ubuntu1
+committer: Timo Jyrinki <timo.jyrinki@canonical.com>
+branch nick: dbus-cpp
+timestamp: Wed 2014-07-16 14:49:33 +0300
+message:
+  Releasing 3.1.0+14.10.20140711-0ubuntu1
+  
+  [ Manuel de la Pena ]
+  * Provide a new make_executor method to allow to pass the io_service.
+  [ Ubuntu daily release ]
+  * debian/*symbols: auto-update new symbols to released version
+------------------------------------------------------------
+revno: 61
+tags: 3.0.0+14.10.20140709.2-0ubuntu1
+committer: CI bot <ps-jenkins@lists.canonical.com>
+branch nick: dbus-cpp
+timestamp: Wed 2014-07-09 10:15:33 +0000
+message:
+  Releasing 3.0.0+14.10.20140709.2-0ubuntu1
+------------------------------------------------------------
+revno: 60 [merge]
+author: Antti Kaijanmäki <antti.kaijanmaki@canonical.com>
+committer: CI bot <ps-jenkins@lists.canonical.com>
+branch nick: dbus-cpp
+timestamp: Wed 2014-07-09 10:15:21 +0000
+message:
+  Fix read-only property PropertiesChanged updates. Fixes: 1339589
+  Approved by: PS Jenkins bot, Thomas Voß
+------------------------------------------------------------
+revno: 59
+tags: 3.0.0+14.10.20140612-0ubuntu1
+committer: CI bot <ps-jenkins@lists.canonical.com>
+branch nick: dbus-cpp
+timestamp: Thu 2014-06-12 11:08:49 +0000
+message:
+  Releasing 3.0.0+14.10.20140612-0ubuntu1
+------------------------------------------------------------
+revno: 58 [merge]
+author: Manuel de la Peña <manuel.delapena@canonical.com>
+committer: CI bot <ps-jenkins@lists.canonical.com>
+branch nick: dbus-cpp
+timestamp: Thu 2014-06-12 11:08:40 +0000
+message:
+  Provide useful macros to be used by developers so that less code has to be written to define methods, properties and signals. 
+------------------------------------------------------------
+revno: 57
+tags: 3.0.0+14.10.20140604-0ubuntu1
+committer: CI bot <ps-jenkins@lists.canonical.com>
+branch nick: dbus-cpp
+timestamp: Wed 2014-06-04 07:29:10 +0000
+message:
+  Releasing 3.0.0+14.10.20140604-0ubuntu1
+------------------------------------------------------------
+revno: 56 [merge]
+author: Jussi Pakkanen <jussi.pakkanen@canonical.com>
+committer: CI bot <ps-jenkins@lists.canonical.com>
+branch nick: dbus-cpp
+timestamp: Wed 2014-06-04 07:29:01 +0000
+message:
+  Remove unnecessary std::moves in return statements. 
+------------------------------------------------------------
+revno: 55
+tags: 3.0.0+14.10.20140507-0ubuntu1
+committer: CI bot <ps-jenkins@lists.canonical.com>
+branch nick: dbus-cpp
+timestamp: Wed 2014-05-07 09:54:13 +0000
+message:
+  Releasing 3.0.0+14.10.20140507-0ubuntu1
+------------------------------------------------------------
+revno: 54 [merge]
+author: thomas-voss <thomas.voss@canonical.com>, Ricardo Mendoza <ricardo.mendoza@canonical.com>
+committer: CI bot <ps-jenkins@lists.canonical.com>
+branch nick: dbus-cpp
+timestamp: Wed 2014-05-07 09:54:04 +0000
+message:
+  Build with GCC 4.8 
+------------------------------------------------------------
+revno: 53
+tags: 2.0.0+14.04.20140326-0ubuntu1
+committer: CI bot <ps-jenkins@lists.canonical.com>
+branch nick: dbus-cpp
+timestamp: Wed 2014-03-26 18:03:49 +0000
+message:
+  Releasing 2.0.0+14.04.20140326-0ubuntu1
+------------------------------------------------------------
+revno: 52
+committer: CI bot <ps-jenkins@lists.canonical.com>
+branch nick: dbus-cpp
+timestamp: Wed 2014-03-26 18:03:40 +0000
+message:
+  No change rebuild because of new process-cpp. 
+------------------------------------------------------------
+revno: 51
+tags: 2.0.0+14.04.20140322-0ubuntu1
+committer: CI bot <ps-jenkins@lists.canonical.com>
+branch nick: dbus-cpp
+timestamp: Sat 2014-03-22 09:42:35 +0000
+message:
+  Releasing 2.0.0+14.04.20140322-0ubuntu1
+------------------------------------------------------------
+revno: 50 [merge]
+author: thomas-voss <thomas.voss@canonical.com>, Robert Bruce Park <robert.park@canonical.com>
+committer: CI bot <ps-jenkins@lists.canonical.com>
+branch nick: dbus-cpp
+timestamp: Sat 2014-03-22 09:42:24 +0000
+message:
+  Do not build-dep explicitly on specific g++ version for ppc64-el. 
+------------------------------------------------------------
+revno: 49
+committer: CI bot <ps-jenkins@lists.canonical.com>
+branch nick: dbus-cpp
+timestamp: Mon 2014-03-10 14:06:41 +0000
+message:
+  Resync trunk
+------------------------------------------------------------
+revno: 48
+tags: 2.0.0+14.04.20140310-0ubuntu1
+committer: CI bot <ps-jenkins@lists.canonical.com>
+branch nick: dbus-cpp
+timestamp: Mon 2014-03-10 09:20:09 +0000
+message:
+  Releasing 2.0.0+14.04.20140310-0ubuntu1
+------------------------------------------------------------
+revno: 47
+committer: CI bot <ps-jenkins@lists.canonical.com>
+branch nick: dbus-cpp
+timestamp: Mon 2014-03-10 09:20:02 +0000
+message:
+  Update symbols
+------------------------------------------------------------
+revno: 46 [merge]
+author: thomas-voss <thomas.voss@canonical.com>
+committer: CI bot <ps-jenkins@lists.canonical.com>
+branch nick: dbus-cpp
+timestamp: Mon 2014-03-10 09:19:54 +0000
+message:
+  Add a test for racyness and provide an alternative to _and_block. 
+------------------------------------------------------------
+revno: 45 [merge]
+author: Łukasz 'sil2100' Zemczak <lukasz.zemczak@canonical.com>
+committer: CI bot <ps-jenkins@lists.canonical.com>
+branch nick: dbus-cpp
+timestamp: Mon 2014-03-10 09:19:45 +0000
+message:
+  Bump the soname, change the soname versioning 
+------------------------------------------------------------
+revno: 44 [merge]
+author: Łukasz 'sil2100' Zemczak <lukasz.zemczak@canonical.com>, thomas-voss <thomas.voss@canonical.com>
+committer: CI bot <ps-jenkins@lists.canonical.com>
+branch nick: dbus-cpp
+timestamp: Mon 2014-03-10 09:19:35 +0000
+message:
+  Try to create symbols files for each architecture, not caring for too much redundancy. It's really hard to maintain those otherwise. 
+------------------------------------------------------------
+revno: 43 [merge]
+author: Pete Woods <pete.woods@canonical.com>
+committer: Tarmac
+branch nick: trunk
+timestamp: Mon 2014-02-10 15:37:21 +0000
+message:
+  Mark symbols that only appear when built under Jenkins as optional.
+  
+  Approved by Antti Kaijanmäki, Pete Woods, PS Jenkins bot.
+------------------------------------------------------------
+revno: 42 [merge]
+author: thomas-voss <thomas.voss@canonical.com>
+committer: Tarmac
+branch nick: trunk
+timestamp: Thu 2014-02-06 13:50:49 +0000
+message:
+  Small adjustments to the symbols file.
+  
+  Approved by Pete Woods, PS Jenkins bot.
+------------------------------------------------------------
+revno: 41 [merge]
+author: Pete Woods <pete.woods@canonical.com>
+committer: Tarmac
+branch nick: trunk
+timestamp: Mon 2014-02-03 12:21:44 +0000
+message:
+  Add service watcher class to allow watching DBus name ownership changes.
+  
+  Approved by PS Jenkins bot, Thomas Voß.
+------------------------------------------------------------
+revno: 40 [merge]
+author: Antti Kaijanmäki <antti.kaijanmaki@canonical.com>
+committer: Tarmac
+branch nick: trunk
+timestamp: Fri 2014-01-31 09:35:45 +0000
+message:
+  Fix deadlock in MessageRouter.
+  
+  Approved by Thomas Voß, PS Jenkins bot.
+------------------------------------------------------------
+revno: 39 [merge]
+author: thomas-voss <thomas.voss@canonical.com>
+committer: Tarmac
+branch nick: trunk
+timestamp: Thu 2014-01-30 15:02:40 +0000
+message:
+  Switch to release build type for production builds.
+  
+  Approved by Pete Woods, PS Jenkins bot.
+------------------------------------------------------------
+revno: 38 [merge]
+author: Antti Kaijanmäki <antti.kaijanmaki@canonical.com>
+committer: Tarmac
+branch nick: trunk
+timestamp: Thu 2014-01-30 11:50:47 +0000
+message:
+  Fix Signal::emit().
+  
+  Approved by Thomas Voß, PS Jenkins bot.
+------------------------------------------------------------
+revno: 37 [merge]
+author: thomas-voss <thomas.voss@canonical.com>
+committer: Tarmac
+branch nick: trunk
+timestamp: Mon 2014-01-27 11:06:25 +0000
+message:
+  Remove local versions of cross-process-sync and fork-and-run.
+  
+  Approved by Antti Kaijanmäki, PS Jenkins bot.
+------------------------------------------------------------
+revno: 36 [merge]
+author: thomas-voss <thomas.voss@canonical.com>
+committer: Tarmac
+branch nick: trunk
+timestamp: Sun 2014-01-26 13:50:41 +0000
+message:
+  Don't exit on dbus connection close.
+  
+  Approved by Antti Kaijanmäki, PS Jenkins bot.
+------------------------------------------------------------
+revno: 35 [merge]
+author: Antti Kaijanmäki <antti.kaijanmaki@canonical.com>
+committer: Tarmac
+branch nick: trunk
+timestamp: Fri 2014-01-24 17:18:15 +0000
+message:
+  Fix stack corruption in core::dbus::Message::pop_boolean().
+  
+  Approved by Thomas Voß, PS Jenkins bot.
+------------------------------------------------------------
+revno: 34 [merge]
+author: thomas-voss <thomas.voss@canonical.com>
+committer: Tarmac
+branch nick: trunk
+timestamp: Fri 2014-01-24 16:57:19 +0000
+message:
+  Add dbus as runtime dependency for libdbus-cpp-dev. Fixes: https://bugs.launchpad.net/bugs/1272191.
+  
+  Approved by Antti Kaijanmäki, PS Jenkins bot.
+------------------------------------------------------------
+revno: 33 [merge]
+author: thomas-voss <thomas.voss@canonical.com>
+committer: Tarmac
+branch nick: trunk
+timestamp: Fri 2014-01-24 09:09:07 +0000
+message:
+  Make sure that signals call about_to_be_destroyed.
+  Make core::dbus::Signal report that it is about to be destructed.
+  Add a thread-safe lifetime constrained object cache & accompanying tests.
+  
+  Approved by Antti Kaijanmäki, PS Jenkins bot.
+------------------------------------------------------------
+revno: 32 [merge]
+author: Automatic PS uploader <ps-jenkins@lists.canonical.com>
+committer: Tarmac
+branch nick: trunk
+timestamp: Thu 2014-01-23 18:21:56 +0000
+message:
+  Releasing 1.0.0+14.04.20140123-0ubuntu1 (revision 31 from lp:dbus-cpp).
+  
+  Approved by PS Jenkins bot.
+------------------------------------------------------------
+revno: 31 [merge]
+author: thomas-voss <thomas.voss@canonical.com>
+committer: Tarmac
+branch nick: trunk
+timestamp: Thu 2014-01-23 13:59:14 +0000
+message:
+  Fix paths to default system and session bus config files.
+  
+  Approved by Antti Kaijanmäki, PS Jenkins bot.
+------------------------------------------------------------
+revno: 30 [merge]
+author: Łukasz 'sil2100' Zemczak <lukasz.zemczak@canonical.com>
+committer: Tarmac
+branch nick: trunk
+timestamp: Thu 2014-01-23 08:51:36 +0000
+message:
+  Merge all symbols file into one file with arch-conditional symbols in it. It should be good this way.
+  
+  Approved by PS Jenkins bot, Ken VanDine.
+------------------------------------------------------------
+revno: 29
+committer: thomas-voss <thomas.voss@canonical.com>
+branch nick: add-test-for-two-different-signals-on-same-object
+timestamp: Thu 2014-01-23 08:28:52 +0100
+message:
+  Add a thread-safe lifetime constrained object cache & accompanying tests.
+------------------------------------------------------------
+revno: 28
+committer: thomas-voss <thomas.voss@canonical.com>
+branch nick: add-test-for-two-different-signals-on-same-object
+timestamp: Wed 2014-01-22 08:44:11 +0100
+message:
+  Add sender to match rule for event filtering.
+------------------------------------------------------------
+revno: 27
+committer: thomas-voss <thomas.voss@canonical.com>
+branch nick: add-test-for-two-different-signals-on-same-object
+timestamp: Tue 2014-01-21 21:44:24 +0100
+message:
+  Add test-cases for same object, same interface, different & same member signals.
+------------------------------------------------------------
+revno: 26 [merge]
+author: thomas-voss <thomas.voss@canonical.com>
+committer: Tarmac
+branch nick: trunk
+timestamp: Tue 2014-01-21 11:32:57 +0000
+message:
+  Switch type for ArgumentType::byte to std::uint8_t as per DBus spec. Fixes: https://bugs.launchpad.net/bugs/1270843.
+  
+  Approved by PS Jenkins bot, Pete Woods.
+------------------------------------------------------------
+revno: 25 [merge]
+author: thomas-voss <thomas.voss@canonical.com>
+committer: Tarmac
+branch nick: trunk
+timestamp: Tue 2014-01-21 10:04:38 +0000
+message:
+  Clean up patch and augment test case.
+  Refactor Variant to rely on an encoder and decoder functor.
+  
+  Approved by Antti Kaijanmäki, PS Jenkins bot.
+------------------------------------------------------------
+revno: 24 [merge]
+author: Antti Kaijanmäki <antti.kaijanmaki@canonical.com>, thomas-voss <thomas.voss@canonical.com>
+committer: Tarmac
+branch nick: trunk
+timestamp: Mon 2014-01-20 08:04:27 +0000
+message:
+  Fix signal creation to always return unique instances.
+  Add test case to prevent from regressions.
+  
+  Approved by Antti Kaijanmäki, PS Jenkins bot.
+------------------------------------------------------------
+revno: 23 [merge]
+author: thomas-voss <thomas.voss@canonical.com>
+committer: Tarmac
+branch nick: trunk
+timestamp: Thu 2014-01-16 15:25:34 +0000
+message:
+  Add operator!= for types::ObjectPath.
+  
+  Approved by Antti Kaijanmäki, PS Jenkins bot.
+------------------------------------------------------------
+revno: 22 [merge]
+author: thomas-voss <thomas.voss@canonical.com>
+committer: Tarmac
+branch nick: trunk
+timestamp: Tue 2014-01-14 15:19:46 +0000
+message:
+  Make sure that expectations not being met fails cross-process test cases.
+  Add a class SigTermCatcher to ease cross-process testing.
+  
+  Approved by Antti Kaijanmäki, PS Jenkins bot.
+------------------------------------------------------------
+revno: 21 [merge]
+author: Antti Kaijanmäki <antti.kaijanmaki@canonical.com>
+committer: Tarmac
+branch nick: trunk
+timestamp: Tue 2014-01-14 14:20:36 +0000
+message:
+  Add Object::path() to get the ObjectPath for an Object.
+  
+  Approved by PS Jenkins bot, Thomas Voß.
+------------------------------------------------------------
+revno: 20 [merge]
+author: thomas-voss <thomas.voss@canonical.com>
+committer: Tarmac
+branch nick: trunk
+timestamp: Mon 2014-01-13 13:05:08 +0000
+message:
+  Make sure that the map is cleared initially.
+  
+  Approved by PS Jenkins bot, Antti Kaijanmäki.
+------------------------------------------------------------
+revno: 19 [merge]
+author: thomas-voss <thomas.voss@canonical.com>
+committer: Tarmac
+branch nick: trunk
+timestamp: Mon 2014-01-13 12:19:09 +0000
+message:
+  Fix map decoding.
+  
+  Approved by PS Jenkins bot, Antti Kaijanmäki.
+------------------------------------------------------------
+revno: 18 [merge]
+author: thomas-voss <thomas.voss@canonical.com>
+committer: Tarmac
+branch nick: trunk
+timestamp: Mon 2014-01-13 09:48:33 +0000
+message:
+  Add fixture for testing purposes.
+  
+  Approved by Pete Woods, PS Jenkins bot.
+------------------------------------------------------------
+revno: 17 [merge]
+author: thomas-voss <thomas.voss@canonical.com>
+committer: Tarmac
+branch nick: trunk
+timestamp: Tue 2014-01-07 04:51:16 +0000
+message:
+  Fix property handling.
+  Fix pkgconfig setup to make sure that clients of the library correctly link to it.
+  
+  Approved by Timo Jyrinki, PS Jenkins bot.
+------------------------------------------------------------
+revno: 16 [merge]
+author: thomas-voss <thomas.voss@canonical.com>, Thomas Voß <thomas.voss@canonical.com>
+committer: Tarmac
+branch nick: trunk
+timestamp: Thu 2013-12-12 13:25:20 +0000
+message:
+   * Add introspect function to autogenerated protocol header files.
+   * Add a code generator for protocol header files.
+   * Split up files and move the boost::asio executor implementation into src.
+   * Force definitions inline.
+  
+  Approved by Timo Jyrinki, PS Jenkins bot.
+------------------------------------------------------------
+revno: 15 [merge]
+author: thomas-voss <thomas.voss@canonical.com>
+committer: Tarmac
+branch nick: trunk
+timestamp: Sun 2013-10-27 18:56:56 +0000
+message:
+  * Update fork_and_run method ensuring that the test process does not get corrupted.
+  * Fix emission of signals carrying values.
+  * Remove duplicate setup of message handler for get and set on property.
+  
+  Approved by PS Jenkins bot.
+------------------------------------------------------------
+revno: 14 [merge]
+author: Łukasz 'sil2100' Zemczak <lukasz.zemczak@canonical.com>
+committer: Tarmac
+branch nick: trunk
+timestamp: Tue 2013-10-22 20:47:27 +0000
+message:
+  Sync trunk with distro.
+  
+  Approved by Mathieu Trudel-Lapierre, PS Jenkins bot.
+------------------------------------------------------------
+revno: 13 [merge]
+author: Automatic PS uploader <ps-jenkins@lists.canonical.com>
+committer: Tarmac
+branch nick: trunk
+timestamp: Wed 2013-09-04 05:18:48 +0000
+message:
+  Releasing 0.0.1+13.10.20130904-0ubuntu1 (revision 12 from lp:dbus-cpp).
+  
+  Approved by PS Jenkins bot.
+------------------------------------------------------------
+revno: 12 [merge]
+author: thomas-voss <thomas.voss@canonical.com>
+committer: Tarmac
+branch nick: trunk
+timestamp: Tue 2013-09-03 14:50:57 +0000
+message:
+  Drop lcov dependency. Fixes: https://bugs.launchpad.net/bugs/1218896.
+  
+  Approved by Michael Terry, PS Jenkins bot.
+------------------------------------------------------------
+revno: 11 [merge]
+author: Automatic PS uploader <ps-jenkins@lists.canonical.com>
+committer: Tarmac
+branch nick: trunk
+timestamp: Tue 2013-06-18 06:18:10 +0000
+message:
+  Releasing 0.0.1daily13.06.18-0ubuntu1 to ubuntu.
+  
+  Approved by PS Jenkins bot.
+------------------------------------------------------------
+revno: 10 [merge]
+author: Automatic PS uploader <ps-jenkins@lists.canonical.com>
+committer: Tarmac
+branch nick: trunk
+timestamp: Mon 2013-06-17 14:18:33 +0000
+message:
+  Releasing 0.0.1daily13.06.17-0ubuntu1 to ubuntu.
+  
+  Approved by PS Jenkins bot.
+------------------------------------------------------------
+revno: 9 [merge]
+author: Automatic PS uploader <ps-jenkins@lists.canonical.com>
+committer: Tarmac
+branch nick: trunk
+timestamp: Fri 2013-06-14 17:32:41 +0000
+message:
+  Releasing 0.0.1daily13.06.14.1-0ubuntu1 to ubuntu.
+  
+  Approved by PS Jenkins bot.
+------------------------------------------------------------
+revno: 8 [merge]
+author: Łukasz 'sil2100' Zemczak <lukasz.zemczak@canonical.com>
+committer: Tarmac
+branch nick: trunk
+timestamp: Fri 2013-06-14 15:00:51 +0000
+message:
+  Disable powerpc tests during build, as those are currently broken.
+  
+  Approved by PS Jenkins bot, Ken VanDine.
+------------------------------------------------------------
+revno: 7 [merge]
+author: Timo Jyrinki <timo.jyrinki@canonical.com>
+committer: Tarmac
+branch nick: trunk
+timestamp: Wed 2013-06-12 20:33:31 +0000
+message:
+  Add copyright headers, fix lintian errors, use @ubuntu.com maintainer address, enable multi-arch.
+  
+  Approved by Łukasz Zemczak, PS Jenkins bot.
+------------------------------------------------------------
+revno: 6 [merge]
+author: Łukasz 'sil2100' Zemczak <lukasz.zemczak@canonical.com>
+committer: Tarmac
+branch nick: trunk
+timestamp: Thu 2013-06-06 15:13:14 +0000
+message:
+  Fix FTBFS on saucy due to the new gcc toolchain (some more restrictions). Modifications related to compliance with our packaging standards.
+  
+  Approved by PS Jenkins bot, Timo Jyrinki.
+------------------------------------------------------------
+revno: 5 [merge]
+author: mrazik
+committer: Tarmac
+branch nick: trunk
+timestamp: Thu 2013-05-23 11:14:10 +0000
+message:
+  Removing custom GCOV option as well as some bogus excludes from the gcovr call and adding "_test" suffix to the test binaries.
+  
+  Approved by PS Jenkins bot, Thomas Voß.
+------------------------------------------------------------
+revno: 4 [merge]
+committer: Thomas Voß <thomas.voss@canonical.com>
+branch nick: dbus-cpp
+timestamp: Thu 2013-05-23 10:50:48 +0200
+message:
+  Merged lp:~didrocks/dbus-cpp/inlinepackaging.
+------------------------------------------------------------
+revno: 3
+committer: Thomas Voß <thomas.voss@canonical.com>
+branch nick: trunk
+timestamp: Thu 2013-05-23 09:36:49 +0200
+message:
+  Inline functions and get rid of constants in traits to avoid duplicate symbol issues in libs/apps using dbus-cpp.
+------------------------------------------------------------
+revno: 2
+committer: Thomas Voß <thomas.voss@canonical.com>
+branch nick: trunk
+timestamp: Tue 2013-05-21 12:32:45 +0200
+message:
+  Added installation of examples and fixed setup of executor in examples.
+------------------------------------------------------------
+revno: 1
+committer: Thomas Voß <thomas.voss@canonical.com>
+branch nick: trunk
+timestamp: Tue 2013-05-21 11:49:21 +0200
+message:
+  Initial commit.
+------------------------------------------------------------
+Use --include-merged or -n0 to see merged revisions.

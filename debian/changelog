@@ -1,0 +1,422 @@
+dbus-cpp (5.0.0+16.10.20160809-0ubuntu1) yakkety; urgency=medium
+
+  * Fix signal emission on dbus::ServiceWatcher.
+
+ -- Thomas Voß <thomas.voss@canonical.com>  Tue, 09 Aug 2016 07:31:30 +0000
+
+dbus-cpp (5.0.0+15.10.20151021.1-0ubuntu1) wily; urgency=medium
+
+  [ CI Train Bot ]
+  * No-change rebuild.
+
+ -- Thomas Voß <ci-train-bot@canonical.com>  Wed, 21 Oct 2015 08:00:51 +0000
+
+dbus-cpp (5.0.0-0ubuntu3) wily; urgency=medium
+
+  * Bump revision as the archive has 5.0.0-0ubuntu2
+
+ -- Thomas Voß <thomas.voss@canonical.com>  Tue, 20 Oct 2015 17:03:52 +0200
+
+dbus-cpp (5.0.0) wily; urgency=medium
+
+  * Bump major revision to account for toolchain update. Fixes LP:#1452322
+
+ -- Thomas Voß <thomas.voss@canonical.com>  Tue, 21 Jul 2015 12:36:46 +0200
+
+dbus-cpp (4.3.0+15.04.20160114.2-0ubuntu1) vivid; urgency=medium
+
+  [ CI Train Bot ]
+  * debian/libdbus-cpp4.symbols.32bit: update to released version.
+  * debian/libdbus-cpp4.symbols.64bit: update to released version.
+
+  [ Thomas Voß ]
+  * Add a proper operator<< for dbus::Message::Type. (LP: #1524131)
+
+ -- Thomas Voß <ci-train-bot@canonical.com>  Thu, 14 Jan 2016 21:51:19 +0000
+
+dbus-cpp (4.3.0+15.04.20160112-0ubuntu1) vivid; urgency=medium
+
+  * Only run dbus_shutdown if explicitly requested by env var. (LP:
+    #1422304, #1526877)
+
+ -- Thomas Voß <ci-train-bot@canonical.com>  Tue, 12 Jan 2016 16:28:02 +0000
+
+dbus-cpp (4.3.0+15.04.20151126-0ubuntu1) vivid; urgency=medium
+
+  [ CI Train Bot ]
+  * New rebuild forced.
+
+  [ Thomas Voß ]
+  * Ensure that Signal with non-void argument types correctly narrow
+    their match rules. (LP: #1480877)
+
+ -- Thomas Voß <ci-train-bot@canonical.com>  Thu, 26 Nov 2015 07:31:37 +0000
+
+dbus-cpp (4.3.0+15.04.20151023-0ubuntu1) vivid; urgency=medium
+
+  [ CI Train Bot ]
+  * New rebuild forced.
+
+  [ Thomas Voß ]
+  * Do not cache emitted values for stub signals. (LP: #1509285)
+
+ -- Jim Hodapp <ci-train-bot@canonical.com>  Fri, 23 Oct 2015 10:01:27 +0000
+
+dbus-cpp (4.3.0+15.04.20151020-0ubuntu1) vivid; urgency=medium
+
+  [ Manuel de la Pena ]
+  * Ensure that the signals are correctly emitted for when the services
+    appear and go.
+
+ -- Thomas Voß <ci-train-bot@canonical.com>  Tue, 20 Oct 2015 10:55:11 +0000
+
+dbus-cpp (4.3.0+15.04.20150505-0ubuntu1) vivid; urgency=medium
+
+  [ CI Train Bot ]
+  * debian/libdbus-cpp4.symbols.32bit: update to released version.
+  * debian/libdbus-cpp4.symbols.64bit: update to released version.
+
+  [ Thomas Voß ]
+  * core::dbus::Fixture: Provide access to the address of the spawned
+    session/system bus instances.
+
+ -- CI Train Bot <ci-train-bot@canonical.com>  Tue, 05 May 2015 08:24:49 +0000
+
+dbus-cpp (4.3.0+15.04.20150415-0ubuntu1) vivid; urgency=medium
+
+  [ Thomas Voß ]
+  * DBus daemon lives in /usr/bin now.
+
+ -- CI Train Bot <ci-train-bot@canonical.com>  Wed, 15 Apr 2015 09:51:18 +0000
+
+dbus-cpp (4.3.0+15.04.20150123-0ubuntu1) vivid; urgency=low
+
+  [ thomas-voss ]
+  * We ref on construction, so decrement the ref count by 1 to 1 prior
+    to returning. (LP: #1396985)
+
+ -- Ubuntu daily release <ps-jenkins@lists.canonical.com>  Fri, 23 Jan 2015 09:56:06 +0000
+
+dbus-cpp (4.3.0+15.04.20141110-0ubuntu1) vivid; urgency=medium
+
+  [ Thomas Voss ]
+  * Ensure Signal<void>::~Signal is exception safe.
+
+ -- Ubuntu daily release <ps-jenkins@lists.canonical.com>  Mon, 10 Nov 2014 12:31:09 +0000
+
+dbus-cpp (4.2.0+15.04.20141105-0ubuntu1) vivid; urgency=medium
+
+  [ Thomas Voss ]
+  * Make core::dbus::Signal::~Signal respect the noexcept guarantee.
+
+ -- Ubuntu daily release <ps-jenkins@lists.canonical.com>  Wed, 05 Nov 2014 07:51:06 +0000
+
+dbus-cpp (4.1.0+15.04.20141104-0ubuntu1) vivid; urgency=low
+
+  * New rebuild forced
+
+ -- Ubuntu daily release <ps-jenkins@lists.canonical.com>  Tue, 04 Nov 2014 04:23:34 +0000
+
+dbus-cpp (4.1.0+14.10.20141031~rtm-0ubuntu1) 14.09; urgency=low
+
+  [ thomas-voss ]
+  * Relax timeout on org.freedesktop.Properties::{GetAll, Get, Set}.
+    with timeout set to 30 sec (LP: #1361642)
+
+  [ Kevin Gunn ]
+  * Relax timeout on org.freedesktop.Properties::{GetAll, Get, Set}.
+    with timeout set to 30 sec (LP: #1361642)
+
+ -- Ubuntu daily release <ps-jenkins@lists.canonical.com>  Fri, 31 Oct 2014 07:51:25 +0000
+
+dbus-cpp (4.1.0+14.10.20141030~rtm-0ubuntu1) 14.09; urgency=medium
+
+  [ Thomas Voss ]
+  * Ensure that dead objects are correctly cleaning up their connections to the signal router.
+  * Robustify against dangling objects. 
+
+ -- Ubuntu daily release <ps-jenkins@lists.canonical.com>  Thu, 30 Oct 2014 14:01:09 +0000
+
+dbus-cpp (4.0.0+14.10.20141006-0ubuntu1) utopic; urgency=low
+
+  [ thomas-voss ]
+  * Fix another race when setting up a pending call notification on
+    another thread than the one driving the event loop. Introduce an
+    option to enable sanitizers.
+
+ -- Ubuntu daily release <ps-jenkins@lists.canonical.com>  Mon, 06 Oct 2014 15:55:53 +0000
+
+dbus-cpp (4.0.0+14.10.20141002.1-0ubuntu1) utopic; urgency=low
+
+  [ thomas-voss ]
+  * Always unref pending calls, add load test to ensure correct
+    behavior. Make sure that timeouts are never notified after
+    destruction. (LP: #1367836)
+
+ -- Ubuntu daily release <ps-jenkins@lists.canonical.com>  Thu, 02 Oct 2014 20:49:03 +0000
+
+dbus-cpp (4.0.0+14.10.20140917-0ubuntu1) utopic; urgency=low
+
+  [ thomas-voss ]
+  * Factor out dbus-specific environment variable names into compile-
+    time constants. Make sure that environment variables are unset prior
+    to setting.
+
+ -- Ubuntu daily release <ps-jenkins@lists.canonical.com>  Wed, 17 Sep 2014 11:47:45 +0000
+
+dbus-cpp (4.0.0+14.10.20140909-0ubuntu1) utopic; urgency=low
+
+  [ thomas-voss ]
+  * Make sure that signature for int64 types is calculated correctly.
+
+ -- Ubuntu daily release <ps-jenkins@lists.canonical.com>  Tue, 09 Sep 2014 18:31:44 +0000
+
+dbus-cpp (4.0.0+14.10.20140808-0ubuntu1) utopic; urgency=low
+
+  [ thomas-voss ]
+  * Ensure that property changed signals are only subscribed to once.
+
+ -- Ubuntu daily release <ps-jenkins@lists.canonical.com>  Fri, 08 Aug 2014 02:05:51 +0000
+
+dbus-cpp (4.0.0+14.10.20140730-0ubuntu1) utopic; urgency=low
+
+  [ Ubuntu daily release ]
+  * debian/libdbus-cpp4.symbols.32bit: auto-update to released version
+  * debian/libdbus-cpp4.symbols.64bit: auto-update to released version
+
+  [ thomas-voss ]
+  * Make sure that dbus daemon instances fired up for testing are torn
+    down after a configurable timeout. (LP: #1326200)
+  * Make sure that core::dbus::Service::Service(...) interprets return
+    values of dbus_bus_request_name correctly. (LP: #1329211)
+
+ -- Ubuntu daily release <ps-jenkins@lists.canonical.com>  Wed, 30 Jul 2014 16:12:30 +0000
+
+dbus-cpp (4.0.0+14.10.20140718-0ubuntu2) utopic; urgency=medium
+
+  * No-change rebuild to get dbgsyms for all binaries onto
+    ddebs.ubuntu.com
+
+ -- Steve Langasek <steve.langasek@ubuntu.com>  Thu, 24 Jul 2014 12:12:39 -0700
+
+dbus-cpp (4.0.0+14.10.20140718-0ubuntu1) utopic; urgency=medium
+
+  [ Thomas Voß ]
+  * Bump major revision and so name to account for toolchain update.
+
+ -- Ubuntu daily release <ps-jenkins@lists.canonical.com>  Fri, 18 Jul 2014 12:24:18 +0000
+
+dbus-cpp (3.1.0+14.10.20140716.1-0ubuntu1) utopic; urgency=medium
+
+  [ Thomas Voß ]
+  * Bumping revision to force build-dependency. 
+
+ -- Ubuntu daily release <ps-jenkins@lists.canonical.com>  Wed, 16 Jul 2014 20:19:01 +0000
+
+dbus-cpp (3.1.0+14.10.20140711-0ubuntu1) utopic; urgency=medium
+
+  [ Manuel de la Pena ]
+  * Provide a new make_executor method to allow to pass the io_service.
+
+  [ Ubuntu daily release ]
+  * debian/*symbols: auto-update new symbols to released version
+
+ -- Ubuntu daily release <ps-jenkins@lists.canonical.com>  Fri, 11 Jul 2014 13:53:03 +0000
+
+dbus-cpp (3.0.0+14.10.20140709.2-0ubuntu1) utopic; urgency=low
+
+  [ Ubuntu daily release ]
+  * New rebuild forced
+
+  [ Antti Kaijanmäki ]
+  * Fix read-only property PropertiesChanged updates. (LP: #1339589)
+
+ -- Ubuntu daily release <ps-jenkins@lists.canonical.com>  Wed, 09 Jul 2014 10:15:33 +0000
+
+dbus-cpp (3.0.0+14.10.20140612-0ubuntu1) utopic; urgency=low
+
+  [ Manuel de la Peña ]
+  * Provide useful macros to be used by developers so that less code has
+    to be written to define methods, properties and signals.
+
+ -- Ubuntu daily release <ps-jenkins@lists.canonical.com>  Thu, 12 Jun 2014 11:08:49 +0000
+
+dbus-cpp (3.0.0+14.10.20140604-0ubuntu1) utopic; urgency=low
+
+  [ Jussi Pakkanen ]
+  * Remove unnecessary std::moves in return statements.
+
+ -- Ubuntu daily release <ps-jenkins@lists.canonical.com>  Wed, 04 Jun 2014 07:29:10 +0000
+
+dbus-cpp (3.0.0+14.10.20140507-0ubuntu1) utopic; urgency=medium
+
+  [ Thomas Voß ]
+  * Version bump, switching to GCC 4.8.
+
+  [ Ubuntu daily release ]
+  * New rebuild forced
+
+ -- Ubuntu daily release <ps-jenkins@lists.canonical.com>  Wed, 07 May 2014 09:54:12 +0000
+
+dbus-cpp (2.0.0+14.04.20140326-0ubuntu1) trusty; urgency=low
+
+  * New rebuild forced
+
+ -- Ubuntu daily release <ps-jenkins@lists.canonical.com>  Wed, 26 Mar 2014 18:03:49 +0000
+
+dbus-cpp (2.0.0+14.04.20140322-0ubuntu1) trusty; urgency=low
+
+  [ CI bot ]
+  * Resync trunk
+
+  [ Robert Bruce Park ]
+  * Do not build-dep explicitly on specific g++ version for ppc64-el.
+
+  [ thomas-voss ]
+  * Do not build-dep explicitly on specific g++ version for ppc64-el.
+
+ -- Ubuntu daily release <ps-jenkins@lists.canonical.com>  Sat, 22 Mar 2014 09:42:35 +0000
+
+dbus-cpp (2.0.0+14.04.20140310-0ubuntu1) trusty; urgency=medium
+
+  [ Pete Woods ]
+  * Change the way signals register match rules -> ABI version bump
+  * Mark symbols that only appear when built under Jenkins as optional.
+
+  [ Ubuntu daily release ]
+  * debian/*symbols: auto-update new symbols to released version
+  * New rebuild forced
+
+  [ thomas-voss ]
+  * Make sure that signals call about_to_be_destroyed. Make
+    core::dbus::Signal report that it is about to be destructed. Add a
+    thread-safe lifetime constrained object cache & accompanying tests.
+  * Add dbus as runtime dependency for libdbus-cpp-dev. (LP: #1272191)
+  * Don't exit on dbus connection close.
+  * Remove local versions of cross-process-sync and fork-and-run.
+  * Switch to release build type for production builds.
+  * Small adjustments to the symbols file.
+  * Try to create symbols files for each architecture, not caring for
+    too much redundancy. It's really hard to maintain those otherwise.
+  * Add a test for racyness and provide an alternative to _and_block.
+
+  [ Antti Kaijanmäki ]
+  * Fix stack corruption in core::dbus::Message::pop_boolean().
+  * Fix Signal::emit().
+  * Fix deadlock in MessageRouter.
+
+  [ Łukasz 'sil2100' Zemczak ]
+  * Try to create symbols files for each architecture, not caring for
+    too much redundancy. It's really hard to maintain those otherwise.
+
+ -- Ubuntu daily release <ps-jenkins@lists.canonical.com>  Mon, 10 Mar 2014 09:20:09 +0000
+
+dbus-cpp (1.0.0+14.04.20140123.1-0ubuntu1) trusty; urgency=medium
+
+  [ Thomas Voß ]
+  * Force compilation against GCC 4.7. Account for toolchain differences.
+
+  [ Łukasz 'sil2100' Zemczak ]
+  * Drop symbols file as a last minute decision. The ABI is not stable and
+    different between architectures. This change won't be merged in trunk.
+    shlibs -V is used in the meantime.
+
+ -- Lukasz 'sil2100' Zemczak <lukasz.zemczak@canonical.com>  Wed, 05 Feb 2014 13:42:44 +0000
+
+dbus-cpp (1.0.0+14.04.20140123-0ubuntu1) trusty; urgency=low
+
+  [ Thomas Voß ]
+  * Manual version bump.
+
+  [ Ubuntu daily release ]
+  * debian/*symbols: auto-update new symbols to released version
+
+  [ thomas-voss ]
+  * Update fork_and_run method ensuring that the test process does not
+    get corrupted. Fix emission of signals carrying values. Remove
+    duplicate setup of message handler for get and set on property.
+  * Fix property handling. Fix pkgconfig setup to make sure that clients
+    of the library correctly link to it.
+  * Add fixture for testing purposes.
+  * Fix map decoding.
+  * Make sure that the map is cleared initially.
+  * Make sure that expectations not being met fails cross-process test
+    cases. Add a class SigTermCatcher to ease cross-process testing.
+  * Add operator!= for types::ObjectPath.
+  * Fix signal creation to always return unique instances. Add test case
+    to prevent from regressions.
+  * Clean up patch and augment test case. Refactor Variant to rely on an
+    encoder and decoder functor.
+  * Switch type for ArgumentType::byte to std::uint8_t as per DBus spec.
+    (LP: #1270843)
+  * Add test-cases for same object, same interface, different & same
+    member signals.
+  * Add sender to match rule for event filtering.
+  * Add a thread-safe lifetime constrained object cache & accompanying
+    tests.
+  * Fix paths to default system and session bus config files.
+
+  [ Antti Kaijanmäki ]
+  * Add Object::path() to get the ObjectPath for an Object.
+  * Fix signal creation to always return unique instances. Add test case
+    to prevent from regressions.
+
+  [ Łukasz 'sil2100' Zemczak ]
+  * Merge all symbols file into one file with arch-conditional symbols
+    in it. It should be good this way.
+
+  [ Ubuntu daily release ]
+  * Automatic snapshot from revision 31
+
+ -- Ubuntu daily release <ps-jenkins@lists.canonical.com>  Thu, 23 Jan 2014 15:53:27 +0000
+
+dbus-cpp (0.0.1+13.10.20130904-0ubuntu2) trusty; urgency=low
+
+  * No change rebuild for Boost 1.54 transition.
+
+ -- Dmitrijs Ledkovs <xnox@ubuntu.com>  Mon, 21 Oct 2013 14:52:42 +0100
+
+dbus-cpp (0.0.1+13.10.20130904-0ubuntu1) saucy; urgency=low
+
+  [ thomas-voss ]
+  * Drop lcov dependency. (LP: #1218896)
+
+  [ Ubuntu daily release ]
+  * Automatic snapshot from revision 12
+
+ -- Ubuntu daily release <ps-jenkins@lists.canonical.com>  Wed, 04 Sep 2013 02:32:09 +0000
+
+dbus-cpp (0.0.1daily13.06.18-0ubuntu1) saucy; urgency=low
+
+  * Automatic snapshot from revision 10
+
+ -- Ubuntu daily release <ps-jenkins@lists.canonical.com>  Tue, 18 Jun 2013 02:02:20 +0000
+
+dbus-cpp (0.0.1daily13.06.17-0ubuntu1) saucy; urgency=low
+
+  * Automatic snapshot from revision 9
+
+ -- Ubuntu daily release <ps-jenkins@lists.canonical.com>  Mon, 17 Jun 2013 02:02:03 +0000
+
+dbus-cpp (0.0.1daily13.06.14.1-0ubuntu1) saucy; urgency=low
+
+  [ Łukasz 'sil2100' Zemczak ]
+  * debian/rules, debian/control, debian/compat, debian/copyright:
+    - Modifications related to compliance with our packaging standards
+  * Disable tests during build for powerpc, as those are currently broken
+  * Automatic snapshot from revision 5 (bootstrap)
+
+  [ Timo Jyrinki ]
+  * Add copyright headers, fix lintian errors, use @ubuntu.com
+    maintainer address, enable multi-arch.
+
+  [ Ubuntu daily release ]
+  * Automatic snapshot from revision 8
+
+ -- Ubuntu daily release <ps-jenkins@lists.canonical.com>  Fri, 14 Jun 2013 15:25:24 +0000
+
+dbus-cpp (0.0.1-0ubuntu1) raring; urgency=low
+
+  * Initial release
+
+ -- Thomas Voß <thomas.voss@canonical.com>  Mon, 06 May 2013 11:43:05 +0200

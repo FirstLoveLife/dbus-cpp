@@ -1,0 +1,247 @@
+/*
+ * Copyright © 2012 Canonical Ltd.
+ *
+ * This program is free software: you can redistribute it and/or modify it
+ * under the terms of the GNU Lesser General Public License version 3,
+ * as published by the Free Software Foundation.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU Lesser General Public License for more details.
+ *
+ * You should have received a copy of the GNU Lesser General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ *
+ * Authored by: Thomas Voß <thomas.voss@canonical.com>
+ */
+
+#include <core/dbus/fixture.h>
+
+#include <core/dbus/bus.h>
+
+#include <boost/filesystem.hpp>
+#include <boost/optional.hpp>
+
+#include <core/posix/exec.h>
+#include <core/posix/this_process.h>
+
+namespace
+{
+static constexpr const char* dbus_session_bus_address
+{
+    "DBUS_SESSION_BUS_ADDRESS"
+};
+
+static constexpr const char* dbus_system_bus_address
+{
+    "DBUS_SYSTEM_BUS_ADDRESS"
+};
+
+static constexpr const char* dbus_starter_address
+{
+    "DBUS_STARTER_ADDRESS"
+};
+
+static constexpr const char* dbus_starter_bus_type
+{
+    "DBUS_STARTER_BUS_TYPE"
+};
+
+boost::optional<boost::filesystem::path> find_executable(const boost::filesystem::path& name)
+{
+  if (name.is_absolute())
+    return name;
+
+  std::stringstream ss{core::posix::this_process::env::get("PATH")};
+  std::string token;
+
+  while (std::getline(ss, token, ':'))
+  {
+    auto path = boost::filesystem::path{token} / name;
+    if (boost::filesystem::exists(path))
+      return path;      
+  }
+
+  return boost::optional<boost::filesystem::path>();
+}
+
+boost::filesystem::path dbus_daemon()
+{
+  if (auto path = find_executable("dbus-daemon"))
+    return *path;
+
+  throw std::runtime_error("Could not locate the dbus-daemon executable, please check your installation.");
+}
+
+boost::filesystem::path timeout()
+{
+  if (auto path = find_executable("timeout"))
+    return *path;
+
+  throw std::runtime_error("Could not locate the timeout executable, please check your installation.");
+}
+}
+
+struct core::dbus::Fixture::Private
+{
+    struct Session
+    {
+        Session(const std::string& config_file)
+        {
+            std::vector<std::string> argv
+            {
+                "--kill-after=5",
+                std::to_string(core::dbus::Fixture::default_daemon_timeout().count()),
+                dbus_daemon().native(),
+                "--config-file",
+                config_file,
+                "--print-address"
+            };
+
+            std::map<std::string, std::string> env;
+            core::posix::this_process::env::for_each([&env](const std::string& key, const std::string& value)
+            {
+                env.insert(std::make_pair(key, value));
+            });
+
+            daemon = core::posix::exec(
+                        timeout().native(),
+                        argv,
+                        env,
+                        core::posix::StandardStream::stdout);
+
+            daemon.cout() >> address;
+
+            if (address.empty())
+                throw std::runtime_error("Session: Could not read address of bus instance.");
+
+            // We clean up the env prior to injecting the new addresses.
+            std::error_code ec; // And just ignore all error codes.
+            core::posix::this_process::env::unset(dbus_session_bus_address, ec);
+            core::posix::this_process::env::unset(dbus_starter_address, ec);
+            core::posix::this_process::env::unset(dbus_starter_bus_type, ec);
+
+            core::posix::this_process::env::set_or_throw(dbus_session_bus_address, address);
+            core::posix::this_process::env::set_or_throw(dbus_starter_address, address);
+            core::posix::this_process::env::set_or_throw(dbus_starter_bus_type, "session");
+        }
+
+        ~Session()
+        {
+            try
+            {
+                daemon.send_signal_or_throw(core::posix::Signal::sig_term);
+                daemon.wait_for(core::posix::wait::Flags::untraced);
+            } catch(...)
+            {
+                // We drop any exception to make the dtor exception safe.
+            }
+        }
+
+        core::posix::ChildProcess daemon = core::posix::ChildProcess::invalid();
+        std::string address;
+    } session;
+
+    struct System
+    {
+        System(const std::string& config_file)
+        {
+            std::vector<std::string> argv
+            {
+                "--kill-after=5",
+                std::to_string(core::dbus::Fixture::default_daemon_timeout().count()),
+                dbus_daemon().native(),
+                "--config-file",
+                config_file,
+                "--print-address"
+            };
+
+            std::map<std::string, std::string> env;
+            core::posix::this_process::env::for_each([&env](const std::string& key, const std::string& value)
+            {
+                env.insert(std::make_pair(key, value));
+            });
+
+            daemon = core::posix::exec(
+                        timeout().native(),
+                        argv,
+                        env,
+                        core::posix::StandardStream::stdout);
+
+            daemon.cout() >> address;
+
+            if (address.empty())
+                throw std::runtime_error("System: Could not read address of bus instance.");
+
+            // We clean up the env prior to injecting the new addresses.
+            std::error_code ec; // And just ignore all error codes.
+            core::posix::this_process::env::unset(dbus_system_bus_address, ec);
+            core::posix::this_process::env::set_or_throw(dbus_system_bus_address, address);
+        }
+
+        ~System()
+        {
+            try
+            {
+                daemon.send_signal_or_throw(core::posix::Signal::sig_term);
+                daemon.wait_for(core::posix::wait::Flags::untraced);
+            } catch(...)
+            {
+                // We drop any exception to make the dtor exception safe.
+            }
+        }
+
+        core::posix::ChildProcess daemon = core::posix::ChildProcess::invalid();
+        std::string address;
+    } system;
+};
+
+core::dbus::Fixture::Seconds& core::dbus::Fixture::default_daemon_timeout()
+{
+    static core::dbus::Fixture::Seconds instance{60};
+    return instance;
+}
+
+const std::string& core::dbus::Fixture::default_session_bus_config_file()
+{
+    static const std::string s{"@CMAKE_INSTALL_PREFIX@/@CMAKE_INSTALL_DATAROOTDIR@/dbus-cpp/session.conf"};
+    return s;
+}
+
+const std::string& core::dbus::Fixture::default_system_bus_config_file()
+{
+    static const std::string s{"@CMAKE_INSTALL_PREFIX@/@CMAKE_INSTALL_DATAROOTDIR@/dbus-cpp/system.conf"};
+    return s;
+}
+
+core::dbus::Fixture::Fixture(const std::string& session_bus_configuration_file,
+                             const std::string& system_bus_configuration_file)
+    : d(new Private{Private::Session{session_bus_configuration_file},
+                    Private::System{system_bus_configuration_file}})
+{
+}
+
+core::dbus::Fixture::~Fixture()
+{
+}
+
+std::string core::dbus::Fixture::session_bus_address()
+{
+    return d->session.address;
+}
+
+std::shared_ptr<core::dbus::Bus> core::dbus::Fixture::create_connection_to_session_bus()
+{
+    return std::shared_ptr<core::dbus::Bus>(new core::dbus::Bus{d->session.address});
+}
+
+std::string core::dbus::Fixture::system_bus_address()
+{
+    return d->system.address;
+}
+
+std::shared_ptr<core::dbus::Bus> core::dbus::Fixture::create_connection_to_system_bus()
+{
+    return std::shared_ptr<core::dbus::Bus>(new core::dbus::Bus{d->system.address});
+}
